@@ -1,10 +1,7 @@
 package de.beautiful.organisation.mysomethingproject
 
 import cats.effect._
-import cats.implicits._
-import io.chrisdavenport.log4cats.Logger
 import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
-import org.http4s.server.blaze.BlazeServerBuilder
 
 object Main extends IOApp {
 
