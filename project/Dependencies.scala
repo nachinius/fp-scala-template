@@ -10,7 +10,7 @@ object Dependencies {
     val catsRetry     = "1.1.0"
     val circe         = "0.13.0"
     val ciris         = "1.0.4"
-    val fs2           = "2.3.0"
+    val fs2           = "2.5.3"
 
     // http
     val http4s        = "0.21.3"
