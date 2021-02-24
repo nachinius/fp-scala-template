@@ -1,7 +1,7 @@
 package de.beautiful.organisation.mysomethingproject
 
 import cats.effect._
-import cats.implicits._
+import cats.syntax.all._
 import org.http4s.HttpRoutes
 import org.http4s.dsl.io._
 import org.http4s.implicits._
