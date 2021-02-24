@@ -1,14 +1,6 @@
 import Dependencies._
 import sbt._
 
-// aliases
-addCommandAlias("rtu", "; reload ; test:update")
-addCommandAlias("rtc", "; reload ; test:compile")
-addCommandAlias("ru", "; reload ; update")
-addCommandAlias("rc", "; reload ; compile")
-addCommandAlias("c", "; compile")
-
-
 lazy val mySomethingProject = (project in file("."))
   .settings(
     name := "My Something Project",
@@ -39,7 +31,8 @@ lazy val mySomethingProject = (project in file("."))
       Libraries.newtype,
       Libraries.refinedCore,
       Libraries.refinedCats,
-      Libraries.tapir
+      Libraries.tapir,
+      Libraries.shapeless
     )
   )
 
