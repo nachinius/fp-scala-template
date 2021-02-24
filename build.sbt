@@ -32,7 +32,7 @@ lazy val mySomethingProject = (project in file("."))
       Libraries.refinedCore,
       Libraries.refinedCats,
       Libraries.tapir,
-      Libraries.shapless
+      Libraries.shapeless
     )
   )
 
