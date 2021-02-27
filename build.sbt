@@ -6,7 +6,7 @@ lazy val mySomethingProject = (project in file("."))
     name := "My Something Project",
     organization := "de.beautiful.organisation",
     version := "0.1",
-    scalaVersion := "2.13.4",
+    scalaVersion := "2.13.5",
     libraryDependencies ++= Seq(
       compilerPlugin(Libraries.kindProjector cross CrossVersion.full),
       compilerPlugin(Libraries.betterMonadicFor),
