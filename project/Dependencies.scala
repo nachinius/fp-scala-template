@@ -23,7 +23,7 @@ object Dependencies {
     val redis4cats    = "0.9.6"
     val squants       = "1.6.0"
     val monocle       = "2.0.0"
-    val tapir         = "0.15.4"
+    val tapir         = "0.17.14"
 
     // db
     val skunk         = "0.0.8"
