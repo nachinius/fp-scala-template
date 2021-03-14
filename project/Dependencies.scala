@@ -5,15 +5,15 @@ object Dependencies {
   object Versions {
 
     val cats          = "2.1.1"
-    val catsEffect    = "2.1.2"
+    val catsEffect    = "2.1.4"
     val catsMeowMtl   = "0.4.0"
-    val catsRetry     = "1.1.0"
+    val catsRetry     = "1.1.1"
     val circe         = "0.13.0"
     val ciris         = "1.0.4"
-    val fs2           = "2.3.0"
+    val fs2           = "2.5.3"
 
     // http
-    val http4s        = "0.21.3"
+    val http4s        = "0.21.20"
     val http4sJwtAuth = "0.0.4"
 
 
@@ -23,7 +23,7 @@ object Dependencies {
     val redis4cats    = "0.9.6"
     val squants       = "1.6.0"
     val monocle       = "2.0.5"
-    val tapir         = "0.15.4"
+    val tapir         = "0.17.16"
 
     // db
     val skunk         = "0.0.8"
