@@ -7,7 +7,7 @@ object Dependencies {
     val cats          = "2.1.1"
     val catsEffect    = "2.1.4"
     val catsMeowMtl   = "0.4.1"
-    val catsRetry     = "1.1.1"
+    val catsRetry     = "2.1.0"
 
     val circe         = "0.13.0"
     val ciris         = "1.0.4"
@@ -18,8 +18,8 @@ object Dependencies {
     val http4sJwtAuth = "0.0.4"
 
 
-    val log4cats      = "1.2.0"
-    val newtype       = "0.4.3"
+    val log4cats      = "1.1.1"
+    val newtype       = "0.4.4"
     val refined       = "0.9.21"
     val redis4cats    = "0.9.6"
     val squants       = "1.6.0"
