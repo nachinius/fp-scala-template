@@ -4,8 +4,8 @@ object Dependencies {
 
   object Versions {
 
-    val cats          = "2.6.1"
-    val catsEffect    = "2.5.0"
+    val cats          = "2.6.0"
+    val catsEffect    = "2.5.4"
     val catsMeowMtl   = "0.4.1"
     val catsRetry     = "2.1.0"
 
@@ -20,7 +20,7 @@ object Dependencies {
 
     val log4cats      = "1.1.1"
     val newtype       = "0.4.4"
-    val refined       = "0.9.24"
+    val refined       = "0.9.28"
     val redis4cats    = "0.9.6"
     val squants       = "1.6.0"
     val monocle       = "2.1.0"
@@ -38,7 +38,7 @@ object Dependencies {
     // compiler plugins
     val betterMonadicFor = "0.3.1"
     val kindProjector    = "0.11.3"
-    val logback          = "1.2.3"
+    val logback          = "1.2.7"
 
     val scalaCheck    = "1.14.3"
     val scalaTest     = "3.2.0"
