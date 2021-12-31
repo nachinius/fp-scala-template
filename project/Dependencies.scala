@@ -5,7 +5,7 @@ object Dependencies {
   object Versions {
 
     val cats          = "2.6.0"
-    val catsEffect    = "2.5.4"
+    val catsEffect    = "3.3.2"
     val catsMeowMtl   = "0.4.1"
     val catsRetry     = "2.1.0"
 
