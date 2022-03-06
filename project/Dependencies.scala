@@ -38,7 +38,7 @@ object Dependencies {
     // compiler plugins
     val betterMonadicFor = "0.3.1"
     val kindProjector    = "0.11.3"
-    val logback          = "1.2.7"
+    val logback          = "1.2.11"
 
     val scalaCheck    = "1.14.3"
     val scalaTest     = "3.2.0"
