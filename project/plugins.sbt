@@ -1,7 +1,7 @@
 addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.10.0")
 
 // markdown with scala code from project
-addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.2.24")
+addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.3.3")
 
 // fmt code
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.5")
