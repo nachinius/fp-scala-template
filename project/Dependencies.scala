@@ -11,10 +11,10 @@ object Dependencies {
 
     val circe         = "0.13.0"
     val ciris         = "1.0.4"
-    val fs2           = "2.5.5"
+    val fs2           = "2.5.11"
 
     // http
-    val http4s        = "0.21.22"
+    val http4s        = "0.21.34"
     val http4sJwtAuth = "0.0.4"
 
 
@@ -23,7 +23,7 @@ object Dependencies {
     val refined       = "0.9.28"
     val redis4cats    = "0.9.6"
     val squants       = "1.6.0"
-    val monocle       = "2.1.0"
+    val monocle       = "3.2.0"
     val tapir         = "0.17.19"
 
     // db
@@ -33,12 +33,12 @@ object Dependencies {
 
 
     // generic programming
-    val shapless      = "2.3.3"
+    val shapless      = "2.3.10"
 
     // compiler plugins
     val betterMonadicFor = "0.3.1"
     val kindProjector    = "0.11.3"
-    val logback          = "1.2.7"
+    val logback          = "1.2.12"
 
     val scalaCheck    = "1.14.3"
     val scalaTest     = "3.2.0"
@@ -100,8 +100,8 @@ object Dependencies {
     val skunkCore  = "org.tpolecat" %% "skunk-core"  % Versions.skunk
     val skunkCirce = "org.tpolecat" %% "skunk-circe" % Versions.skunk
 
-    val monocleCore = "com.github.julien-truffaut" %% "monocle-core" % Versions.monocle
-    val monocleMacro = "com.github.julien-truffaut" %% "monocle-macro" % Versions.monocle
+    val monocleCore = "dev.optics" %% "monocle-core" % Versions.monocle
+    val monocleMacro = "dev.optics" %% "monocle-macro" % Versions.monocle
 
     val tapir = "com.softwaremill.sttp.tapir" %% "tapir-core" % Versions.tapir
 
