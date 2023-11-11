@@ -4,7 +4,7 @@ import sbt._
 lazy val mySomethingProject = (project in file("."))
   .settings(
     name := "My Something Project",
-    organization := "de.beautiful.organisation",
+    organization := "com.nachinius",
     version := "0.1",
     scalaVersion := "2.13.4",
     libraryDependencies ++= Seq(
