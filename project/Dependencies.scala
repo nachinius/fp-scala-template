@@ -14,7 +14,7 @@ object Dependencies {
     val fs2           = "2.5.11"
 
     // http
-    val http4s        = "0.21.34"
+    val http4s        = "0.23.26"
     val http4sJwtAuth = "0.0.4"
 
 
