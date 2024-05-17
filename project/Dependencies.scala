@@ -33,7 +33,7 @@ object Dependencies {
 
 
     // generic programming
-    val shapless      = "2.3.10"
+    val shapless      = "2.3.11"
 
     // compiler plugins
     val betterMonadicFor = "0.3.1"
