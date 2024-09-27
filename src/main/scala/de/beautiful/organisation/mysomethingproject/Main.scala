@@ -1,7 +1,7 @@
 package de.beautiful.organisation.mysomethingproject
 
 import cats.effect._
-import io.chrisdavenport.log4cats.slf4j.Slf4jLogger
+import org.typelevel.log4cats.slf4j.Slf4jLogger
 
 object Main extends IOApp {
 
