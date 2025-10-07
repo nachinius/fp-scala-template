@@ -8,7 +8,7 @@ lazy val mySomethingProject = (project in file("."))
     version := "0.1",
     scalaVersion := "2.13.4",
     libraryDependencies ++= Seq(
-      compilerPlugin(Libraries.kindProjector cross CrossVersion.full),
+      compilerPlugin(Libraries.kindProjector cross CrossVersion.binary),
       compilerPlugin(Libraries.betterMonadicFor),
       Libraries.cats,
       Libraries.catsEffect,
