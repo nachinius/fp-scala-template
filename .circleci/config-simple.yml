@@ -1,0 +1,72 @@
+# Alternative simple CircleCI config that avoids SSH issues
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/openjdk:11.0
+    
+    working_directory: ~/project
+    
+    environment:
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+    
+    steps:
+      # Use add_ssh_keys if you have SSH keys configured in CircleCI
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "your-ssh-key-fingerprint"
+      
+      # Standard checkout - should work with public repos
+      - checkout
+      
+      # Alternative: Manual HTTPS clone (uncomment if checkout fails)
+      # - run:
+      #     name: Clone repository via HTTPS
+      #     command: |
+      #       rm -rf .git
+      #       git clone https://github.com/nachinius/fp-scala-template.git .
+      #       git checkout $CIRCLE_SHA1
+      
+      # Install SBT
+      - run:
+          name: Install SBT
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y curl
+            echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+            curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+            sudo apt-get update
+            sudo apt-get install -y sbt
+      
+      # Cache dependencies
+      - restore_cache:
+          keys:
+            - sbt-deps-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}
+            - sbt-deps-{{ checksum "build.sbt" }}
+            - sbt-deps-
+      
+      # Compile
+      - run:
+          name: Compile
+          command: sbt compile
+      
+      # Test
+      - run:
+          name: Test
+          command: sbt test
+      
+      # Save cache
+      - save_cache:
+          key: sbt-deps-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}
+          paths:
+            - ~/.ivy2/cache
+            - ~/.sbt
+            - ~/.cache/coursier
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
