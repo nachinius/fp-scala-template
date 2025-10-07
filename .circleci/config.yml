@@ -1,65 +1,80 @@
 version: 2.1
 
-# Use CircleCI's official Scala orb for better SBT support
-orbs:
-  scala: circleci/scala@0.0.1
-
-# Define executors
-executors:
-  scala-executor:
+jobs:
+  build:
     docker:
       - image: cimg/openjdk:11.0
+    
     working_directory: ~/project
+    
     environment:
-      # JVM options for SBT
       JVM_OPTS: -Xmx3200m
       TERM: dumb
-
-# Define jobs
-jobs:
-  build-and-test:
-    executor: scala-executor
+    
     steps:
-      # Standard checkout - CircleCI handles SSH/HTTPS automatically
+      # Standard checkout - CircleCI should handle this automatically
       - checkout
       
       # Cache SBT and dependencies
       - restore_cache:
           keys:
-            - sbt-cache-v2-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "project/build.properties" }}
-            - sbt-cache-v2-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}
-            - sbt-cache-v2-{{ checksum "build.sbt" }}
-            - sbt-cache-v2-
+            - sbt-deps-v4-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "project/build.properties" }}
+            - sbt-deps-v4-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}
+            - sbt-deps-v4-{{ checksum "build.sbt" }}
+            - sbt-deps-v4-
       
-      # Install SBT using the official installer
+      # Install SBT using the most reliable method
       - run:
           name: Install SBT
           command: |
-            # Install SBT using the official method
-            echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
-            echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list
-            curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
+            # Update package list
             sudo apt-get update
-            sudo apt-get install sbt
+            
+            # Install required packages
+            sudo apt-get install -y curl gnupg software-properties-common
+            
+            # Add SBT repository and key
+            echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
+            curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add -
+            
+            # Update and install SBT
+            sudo apt-get update
+            sudo apt-get install -y sbt
+            
+            # Verify SBT installation
+            sbt about
       
       # Compile the project
       - run:
           name: Compile
-          command: sbt compile
+          command: |
+            echo "Compiling Scala project..."
+            sbt compile
       
       # Run tests
       - run:
-          name: Run tests
-          command: sbt test
+          name: Test
+          command: |
+            echo "Running tests..."
+            sbt test
       
-      # Check code formatting (optional - will warn but not fail)
+      # Check formatting (optional, non-blocking)
       - run:
-          name: Check code formatting
-          command: sbt scalafmtCheckAll || echo "Code formatting check failed - please run 'sbt scalafmt'"
+          name: Check formatting
+          command: |
+            echo "Checking code formatting..."
+            sbt scalafmtCheckAll || echo "Formatting check failed - consider running 'sbt scalafmt'"
+      
+      # Package the application
+      - run:
+          name: Package
+          command: |
+            echo "Packaging application..."
+            sbt package
       
       # Save cache
       - save_cache:
-          key: sbt-cache-v2-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "project/build.properties" }}
+          key: sbt-deps-v4-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "project/build.properties" }}
           paths:
             - ~/.ivy2/cache
             - ~/.sbt
@@ -72,50 +87,10 @@ jobs:
       # Store artifacts
       - store_artifacts:
           path: target/scala-2.13
-          destination: scala-artifacts
+          destination: artifacts
 
-  # Package job for creating distribution
-  package:
-    executor: scala-executor
-    steps:
-      - checkout
-      
-      - restore_cache:
-          keys:
-            - sbt-cache-v2-{{ checksum "build.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "project/build.properties" }}
-            - sbt-cache-v2-
-      
-      - run:
-          name: Install SBT
-          command: |
-            echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | sudo tee /etc/apt/sources.list.d/sbt.list
-            echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | sudo tee /etc/apt/sources.list.d/sbt_old.list
-            curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | sudo apt-key add
-            sudo apt-get update
-            sudo apt-get install sbt
-      
-      - run:
-          name: Package application
-          command: sbt package
-      
-      - store_artifacts:
-          path: target/scala-2.13/*.jar
-          destination: jars
-
-# Define workflows
 workflows:
   version: 2
-  build-test-package:
+  build_and_test:
     jobs:
-      - build-and-test
-      - package:
-          requires:
-            - build-and-test
-          filters:
-            branches:
-              only:
-                - main
-                - master
-                - develop
-                - /^feature\/.*/
-                - /^fix\/.*/
+      - build
