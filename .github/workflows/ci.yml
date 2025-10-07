@@ -20,7 +20,7 @@ jobs:
       uses: actions/checkout@v4
     
     - name: Setup Java ${{ matrix.java }}
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
@@ -31,7 +31,7 @@ jobs:
         sbt-version: 1.9.7
     
     - name: Cache SBT dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.ivy2/cache
@@ -56,14 +56,14 @@ jobs:
       run: sbt package
     
     - name: Upload test results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: test-results-java-${{ matrix.java }}
         path: target/test-reports/
     
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: scala-artifacts-java-${{ matrix.java }}
         path: target/scala-2.13/*.jar
