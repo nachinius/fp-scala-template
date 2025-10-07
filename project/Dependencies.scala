@@ -4,44 +4,44 @@ object Dependencies {
 
   object Versions {
 
-    val cats          = "2.6.0"
-    val catsEffect    = "2.5.4"
+    val cats          = "2.10.0"
+    val catsEffect    = "3.5.2"
     val catsMeowMtl   = "0.4.1"
-    val catsRetry     = "2.1.0"
+    val catsRetry     = "3.1.3"
 
-    val circe         = "0.13.0"
-    val ciris         = "1.0.4"
-    val fs2           = "2.5.11"
+    val circe         = "0.14.6"
+    val ciris         = "3.4.0"
+    val fs2           = "3.9.3"
 
     // http
-    val http4s        = "0.21.34"
-    val http4sJwtAuth = "0.0.4"
+    val http4s        = "0.23.24"
+    val http4sJwtAuth = "1.2.0"
 
-
-    val log4cats      = "1.1.1"
+    val log4cats      = "2.6.0"
     val newtype       = "0.4.4"
-    val refined       = "0.9.28"
-    val redis4cats    = "0.9.6"
-    val squants       = "1.6.0"
+    val refined       = "0.11.0"
+    val redis4cats    = "1.4.1"
+    val squants       = "1.8.3"
     val monocle       = "3.2.0"
-    val tapir         = "0.17.19"
+    val tapir         = "1.8.5"
+    val pureconfig    = "0.17.4"
 
     // db
-    val skunk         = "0.0.8"
-    val quill         = "3.5.2"
-    val doobie        = "0.8.8"
-
+    val skunk         = "0.6.2"
+    val quill         = "4.8.0"
+    val doobie        = "1.0.0-RC4"
 
     // generic programming
     val shapless      = "2.3.10"
 
     // compiler plugins
     val betterMonadicFor = "0.3.1"
-    val kindProjector    = "0.11.3"
-    val logback          = "1.2.12"
+    val kindProjector    = "0.13.2"
+    val logback          = "1.4.11"
 
-    val scalaCheck    = "1.14.3"
-    val scalaTest     = "3.2.0"
+    val scalaCheck    = "1.17.0"
+    val scalaTest     = "3.2.17"
+    val catsEffectTesting = "1.5.0"
   }
 
   object Libraries {
@@ -72,8 +72,8 @@ object Dependencies {
     val cirisRefined = ciris("ciris-refined")
 
     val http4sDsl    = http4s("http4s-dsl")
-    val http4sServer = http4s("http4s-blaze-server")
-    val http4sClient = http4s("http4s-blaze-client")
+    val http4sServer = http4s("http4s-ember-server")
+    val http4sClient = http4s("http4s-ember-client")
     val http4sCirce  = http4s("http4s-circe")
 
     val http4sJwtAuth = "dev.profunktor" %% "http4s-jwt-auth" % Versions.http4sJwtAuth
@@ -81,7 +81,7 @@ object Dependencies {
     val refinedCore = "eu.timepit" %% "refined"      % Versions.refined
     val refinedCats = "eu.timepit" %% "refined-cats" % Versions.refined
 
-    val log4cats = "io.chrisdavenport" %% "log4cats-slf4j" % Versions.log4cats
+    val log4cats = "org.typelevel" %% "log4cats-slf4j" % Versions.log4cats
     val newtype  = "io.estatico"       %% "newtype"        % Versions.newtype
 
     val redis4catsEffects  = "dev.profunktor" %% "redis4cats-effects"  % Versions.redis4cats
@@ -112,21 +112,25 @@ object Dependencies {
     val betterMonadicFor = "com.olegpy"    %% "better-monadic-for" % Versions.betterMonadicFor
     val kindProjector    = "org.typelevel" % "kind-projector"      % Versions.kindProjector
 
+    // Configuration
+    val pureconfig = "com.github.pureconfig" %% "pureconfig" % Versions.pureconfig
+
     // Runtime
     val logback = "ch.qos.logback" % "logback-classic" % Versions.logback
 
     // Test
     val scalaCheck    = "org.scalacheck"    %% "scalacheck"      % Versions.scalaCheck
     val scalaTest     = "org.scalatest"     %% "scalatest"       % Versions.scalaTest
+    val catsEffectTesting = "org.typelevel" %% "cats-effect-testing-scalatest" % Versions.catsEffectTesting
   }
 
   object Resolvers {
 
-    val snapshots = Resolver.sonatypeRepo("snapshots")
-    val release = Resolver.sonatypeRepo("release")
+    val snapshots = Resolver.sonatypeOssRepos("snapshots")
+    val release = Resolver.sonatypeOssRepos("releases")
 
     val moreResolvers = Seq(
-        "Typesafe Snapshots" at "http://repo.typesafe.com/typesafe/snapshots/",
+        "Typesafe Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/",
         "Secured Central Repository" at "https://repo1.maven.org/maven2",
     )
   }
