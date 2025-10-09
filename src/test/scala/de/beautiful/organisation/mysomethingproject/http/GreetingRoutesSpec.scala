@@ -16,12 +16,12 @@ class GreetingRoutesSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
 
   "GreetingRoutes" - {
     val greetingService = GreetingService.impl[IO](logger)
-    val routes = GreetingRoutes[IO](greetingService, logger).routes
+    val routes          = GreetingRoutes[IO](greetingService, logger).routes
 
     "GET /hello/{name}" - {
       "should return a greeting for a specific name" in {
         val request = Request[IO](Method.GET, uri"/hello/Alice")
-        
+
         routes.orNotFound.run(request).flatMap { response =>
           response.status shouldBe Status.Ok
           response.as[String].asserting { body =>
@@ -35,7 +35,7 @@ class GreetingRoutesSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
     "GET /hello" - {
       "should return a greeting for anonymous user" in {
         val request = Request[IO](Method.GET, uri"/hello")
-        
+
         routes.orNotFound.run(request).flatMap { response =>
           response.status shouldBe Status.Ok
           response.as[String].asserting { body =>
