@@ -4,43 +4,43 @@ object Dependencies {
 
   object Versions {
 
-    val cats          = "2.10.0"
-    val catsEffect    = "3.5.2"
-    val catsMeowMtl   = "0.4.1"
-    val catsRetry     = "3.1.3"
+    val cats        = "2.10.0"
+    val catsEffect  = "3.5.2"
+    val catsMeowMtl = "0.4.1"
+    val catsRetry   = "3.1.3"
 
-    val circe         = "0.14.6"
-    val ciris         = "3.4.0"
-    val fs2           = "3.9.3"
+    val circe = "0.14.6"
+    val ciris = "3.4.0"
+    val fs2   = "3.9.3"
 
     // http
     val http4s        = "0.23.24"
     val http4sJwtAuth = "1.2.0"
 
-    val log4cats      = "2.6.0"
-    val newtype       = "0.4.4"
-    val refined       = "0.11.0"
-    val redis4cats    = "1.4.1"
-    val squants       = "1.8.3"
-    val monocle       = "3.2.0"
-    val tapir         = "1.8.5"
-    val pureconfig    = "0.17.4"
+    val log4cats   = "2.7.1"
+    val newtype    = "0.4.4"
+    val refined    = "0.11.0"
+    val redis4cats = "1.4.1"
+    val squants    = "1.8.3"
+    val monocle    = "3.2.0"
+    val tapir      = "1.8.5"
+    val pureconfig = "0.17.4"
 
     // db
-    val skunk         = "0.6.2"
-    val quill         = "4.8.0"
-    val doobie        = "1.0.0-RC4"
+    val skunk  = "0.6.2"
+    val quill  = "4.8.0"
+    val doobie = "1.0.0-RC4"
 
     // generic programming
-    val shapless      = "2.3.10"
+    val shapless = "2.3.10"
 
     // compiler plugins
     val betterMonadicFor = "0.3.1"
     val kindProjector    = "0.13.2"
     val logback          = "1.4.11"
 
-    val scalaCheck    = "1.17.0"
-    val scalaTest     = "3.2.17"
+    val scalaCheck        = "1.17.0"
+    val scalaTest         = "3.2.17"
     val catsEffectTesting = "1.5.0"
   }
 
@@ -50,15 +50,15 @@ object Dependencies {
     def http4s(artifact: String): ModuleID = "org.http4s" %% artifact % Versions.http4s
     def meow(artifact: String): ModuleID   = "com.olegpy" %% artifact % Versions.catsMeowMtl
 
-    val cats        = "org.typelevel"    %% "cats-core"     % Versions.cats
-    val catsEffect  = "org.typelevel"    %% "cats-effect"   % Versions.catsEffect
-    val catsRetry   = "com.github.cb372" %% "cats-retry"    % Versions.catsRetry
-    val squants     = "org.typelevel"    %% "squants"       % Versions.squants
-    val fs2         = "co.fs2"           %% "fs2-core"      % Versions.fs2
+    val cats       = "org.typelevel"    %% "cats-core"   % Versions.cats
+    val catsEffect = "org.typelevel"    %% "cats-effect" % Versions.catsEffect
+    val catsRetry  = "com.github.cb372" %% "cats-retry"  % Versions.catsRetry
+    val squants    = "org.typelevel"    %% "squants"     % Versions.squants
+    val fs2        = "co.fs2"           %% "fs2-core"    % Versions.fs2
 
-    val catsMeowMtl = meow("meow-mtl-core")
+    val catsMeowMtl        = meow("meow-mtl-core")
     val catsMeowMtlEffects = meow("meow-mtl-effects")
-    val catsMeowMtlMonix = meow("meow-mtl-monix")
+    val catsMeowMtlMonix   = meow("meow-mtl-monix")
 
     val circeCore    = circe("circe-core")
     val circeGeneric = circe("circe-generic")
@@ -66,7 +66,7 @@ object Dependencies {
     val circeRefined = circe("circe-refined")
 
     // configuration
-    val cirisCore    = ciris("ciris")
+    val cirisCore = ciris("ciris")
 
     val cirisEnum    = ciris("ciris-enumeratum")
     val cirisRefined = ciris("ciris-refined")
@@ -82,25 +82,28 @@ object Dependencies {
     val refinedCats = "eu.timepit" %% "refined-cats" % Versions.refined
 
     val log4cats = "org.typelevel" %% "log4cats-slf4j" % Versions.log4cats
-    val newtype  = "io.estatico"       %% "newtype"        % Versions.newtype
+    val newtype  = "io.estatico"   %% "newtype"        % Versions.newtype
 
     val redis4catsEffects  = "dev.profunktor" %% "redis4cats-effects"  % Versions.redis4cats
     val redis4catsLog4cats = "dev.profunktor" %% "redis4cats-log4cats" % Versions.redis4cats
 
-    val doobie =   "org.tpolecat" %% "doobie-core" % Versions.doobie
-    val doobieH2 = "org.tpolecat" %% "doobie-h2"        % Versions.doobie          // H2 driver 1.4.200 + type mappings.
-    val doobieHikari = "org.tpolecat" %% "doobie-hikari"    % Versions.doobie          // HikariCP transactor.
-    val doobiePostgres = "org.tpolecat" %% "doobie-postgres"  % Versions.doobie          // Postgres driver 42.2.9 + type mappings.
-    val doobieQuill = "org.tpolecat" %% "doobie-quill"     % Versions.doobie          // Support for Quill 3.4.10
-    val doobieSpec2 = "org.tpolecat" %% "doobie-specs2"    % Versions.doobie % "test" // Specs2 support for typechecking statements.
-    val doobieScalaTest = "org.tpolecat" %% "doobie-scalatest" % Versions.doobie % "test" 
+    val doobie = "org.tpolecat" %% "doobie-core" % Versions.doobie
+    val doobieH2 =
+      "org.tpolecat" %% "doobie-h2" % Versions.doobie // H2 driver 1.4.200 + type mappings.
+    val doobieHikari = "org.tpolecat" %% "doobie-hikari" % Versions.doobie // HikariCP transactor.
+    val doobiePostgres =
+      "org.tpolecat" %% "doobie-postgres" % Versions.doobie // Postgres driver 42.2.9 + type mappings.
+    val doobieQuill = "org.tpolecat" %% "doobie-quill" % Versions.doobie // Support for Quill 3.4.10
+    val doobieSpec2 =
+      "org.tpolecat" %% "doobie-specs2" % Versions.doobie % "test" // Specs2 support for typechecking statements.
+    val doobieScalaTest = "org.tpolecat" %% "doobie-scalatest" % Versions.doobie % "test"
 
     val quill = "io.getquill" %% "quill-core" % Versions.quill
 
     val skunkCore  = "org.tpolecat" %% "skunk-core"  % Versions.skunk
     val skunkCirce = "org.tpolecat" %% "skunk-circe" % Versions.skunk
 
-    val monocleCore = "dev.optics" %% "monocle-core" % Versions.monocle
+    val monocleCore  = "dev.optics" %% "monocle-core"  % Versions.monocle
     val monocleMacro = "dev.optics" %% "monocle-macro" % Versions.monocle
 
     val tapir = "com.softwaremill.sttp.tapir" %% "tapir-core" % Versions.tapir
@@ -109,8 +112,8 @@ object Dependencies {
     val shapeless = "com.chuusai" %% "shapeless" % Versions.shapless
 
     // Compiler plugins
-    val betterMonadicFor = "com.olegpy"    %% "better-monadic-for" % Versions.betterMonadicFor
-    val kindProjector    = "org.typelevel" % "kind-projector"      % Versions.kindProjector
+    val betterMonadicFor = "com.olegpy"   %% "better-monadic-for" % Versions.betterMonadicFor
+    val kindProjector    = "org.typelevel" % "kind-projector"     % Versions.kindProjector
 
     // Configuration
     val pureconfig = "com.github.pureconfig" %% "pureconfig" % Versions.pureconfig
@@ -119,19 +122,20 @@ object Dependencies {
     val logback = "ch.qos.logback" % "logback-classic" % Versions.logback
 
     // Test
-    val scalaCheck    = "org.scalacheck"    %% "scalacheck"      % Versions.scalaCheck
-    val scalaTest     = "org.scalatest"     %% "scalatest"       % Versions.scalaTest
-    val catsEffectTesting = "org.typelevel" %% "cats-effect-testing-scalatest" % Versions.catsEffectTesting
+    val scalaCheck = "org.scalacheck" %% "scalacheck" % Versions.scalaCheck
+    val scalaTest  = "org.scalatest"  %% "scalatest"  % Versions.scalaTest
+    val catsEffectTesting =
+      "org.typelevel" %% "cats-effect-testing-scalatest" % Versions.catsEffectTesting
   }
 
   object Resolvers {
 
     val snapshots = Resolver.sonatypeOssRepos("snapshots")
-    val release = Resolver.sonatypeOssRepos("releases")
+    val release   = Resolver.sonatypeOssRepos("releases")
 
     val moreResolvers = Seq(
-        "Typesafe Snapshots" at "https://repo.typesafe.com/typesafe/snapshots/",
-        "Secured Central Repository" at "https://repo1.maven.org/maven2",
+      "Typesafe Snapshots".at("https://repo.typesafe.com/typesafe/snapshots/"),
+      "Secured Central Repository".at("https://repo1.maven.org/maven2")
     )
   }
 }
