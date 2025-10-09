@@ -41,7 +41,7 @@ object Dependencies {
 
     val scalaCheck        = "1.17.0"
     val scalaTest         = "3.2.17"
-    val catsEffectTesting = "1.5.0"
+    val catsEffectTesting = "1.7.0"
   }
 
   object Libraries {
