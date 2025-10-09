@@ -14,7 +14,7 @@ class GreetingServiceSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
   "GreetingService" - {
     "should create a proper greeting" in {
       val service = GreetingService.impl[IO](logger)
-      
+
       service.greet("Alice").asserting { greeting =>
         greeting should include("Alice")
         greeting should include("Hello")
@@ -24,7 +24,7 @@ class GreetingServiceSpec extends AsyncFreeSpec with AsyncIOSpec with Matchers {
 
     "should handle empty names" in {
       val service = GreetingService.impl[IO](logger)
-      
+
       service.greet("").asserting { greeting =>
         greeting should include("Hello")
         greeting should not be empty

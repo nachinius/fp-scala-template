@@ -12,18 +12,17 @@ case class HealthStatus(status: String, timestamp: Long)
 
 class HealthRoutes[F[_]: Sync](logger: Logger[F]) extends Http4sDsl[F] {
 
-  val routes: HttpRoutes[F] = HttpRoutes.of[F] {
-    case GET -> Root / "health" =>
-      for {
-        _         <- logger.debug("Health check requested")
-        timestamp <- Sync[F].delay(System.currentTimeMillis())
-        status    = HealthStatus("OK", timestamp)
-        response  <- Ok(status)
-      } yield response
+  val routes: HttpRoutes[F] = HttpRoutes.of[F] { case GET -> Root / "health" =>
+    for {
+      _         <- logger.debug("Health check requested")
+      timestamp <- Sync[F].delay(System.currentTimeMillis())
+      status     = HealthStatus("OK", timestamp)
+      response  <- Ok(status)
+    } yield response
   }
 }
 
 object HealthRoutes {
-  def apply[F[_]: Sync](logger: Logger[F]): HealthRoutes[F] = 
+  def apply[F[_]: Sync](logger: Logger[F]): HealthRoutes[F] =
     new HealthRoutes[F](logger)
 }

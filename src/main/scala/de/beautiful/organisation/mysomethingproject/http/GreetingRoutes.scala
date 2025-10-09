@@ -8,8 +8,8 @@ import org.typelevel.log4cats.Logger
 import de.beautiful.organisation.mysomethingproject.domain.GreetingService
 
 class GreetingRoutes[F[_]: Sync](
-  greetingService: GreetingService[F],
-  logger: Logger[F]
+    greetingService: GreetingService[F],
+    logger: Logger[F]
 ) extends Http4sDsl[F] {
 
   val routes: HttpRoutes[F] = HttpRoutes.of[F] {
@@ -19,7 +19,7 @@ class GreetingRoutes[F[_]: Sync](
         greeting <- greetingService.greet(name)
         response <- Ok(greeting)
       } yield response
-      
+
     case GET -> Root / "hello" =>
       for {
         _        <- logger.info("Received greeting request without name")
@@ -31,8 +31,8 @@ class GreetingRoutes[F[_]: Sync](
 
 object GreetingRoutes {
   def apply[F[_]: Sync](
-    greetingService: GreetingService[F],
-    logger: Logger[F]
-  ): GreetingRoutes[F] = 
+      greetingService: GreetingService[F],
+      logger: Logger[F]
+  ): GreetingRoutes[F] =
     new GreetingRoutes[F](greetingService, logger)
 }

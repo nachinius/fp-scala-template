@@ -9,15 +9,14 @@ trait GreetingService[F[_]] {
 }
 
 object GreetingService {
-  
-  def impl[F[_]: Sync](logger: Logger[F]): GreetingService[F] = 
+
+  def impl[F[_]: Sync](logger: Logger[F]): GreetingService[F] =
     new GreetingService[F] {
-      override def greet(name: String): F[String] = {
+      override def greet(name: String): F[String] =
         for {
           _        <- logger.debug(s"Creating greeting for: $name")
           greeting <- Sync[F].pure(s"Hello, $name! Welcome to our functional Scala application.")
           _        <- logger.debug(s"Generated greeting: $greeting")
         } yield greeting
-      }
     }
 }

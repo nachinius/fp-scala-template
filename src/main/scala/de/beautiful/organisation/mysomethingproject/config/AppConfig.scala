@@ -4,12 +4,12 @@ import pureconfig._
 import pureconfig.generic.auto._
 
 final case class ServerConfig(
-  host: String,
-  port: Int
+    host: String,
+    port: Int
 )
 
 final case class AppConfig(
-  server: ServerConfig
+    server: ServerConfig
 )
 
 object AppConfig {
